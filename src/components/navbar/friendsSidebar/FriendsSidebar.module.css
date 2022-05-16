@@ -1,0 +1,10 @@
+.sidebarFriends {
+  display: inline-block;
+  padding-right: 10px;
+  text-align: center;
+}
+.sidebarFriends img {
+  height: 40px;
+  width: 40px;
+  border-radius: 20px;
+}

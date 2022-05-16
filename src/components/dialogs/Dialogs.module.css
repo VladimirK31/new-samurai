@@ -1,0 +1,28 @@
+.dialogs {
+  display: grid;
+  grid-template-columns: 2fr 10fr;
+}
+.photo {
+  height: 30px;
+  width: 30px;
+  border-radius: 15px;
+  margin-top: 10px;
+}
+.dialogsUser {
+  padding-left: 20px;
+  line-height: 3;
+}
+
+.dialogsUser .active {
+  color: darkviolet;
+}
+.messages {
+  padding-left: 20px;
+  line-height: 3;
+}
+.buttonMessage {
+  height: 30px;
+  background-color: chartreuse;
+  vertical-align: super;
+  border-radius: 10px;
+}

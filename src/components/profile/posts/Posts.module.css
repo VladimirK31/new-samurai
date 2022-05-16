@@ -1,0 +1,9 @@
+.posts {
+  padding-left: 20px;
+  padding-top: 10px;
+}
+.button {
+  background-color: chartreuse;
+  vertical-align: super;
+  border-radius: 10px;
+}

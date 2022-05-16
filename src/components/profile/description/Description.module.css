@@ -1,0 +1,9 @@
+.description {
+  padding-left: 20px;
+  padding-top: 10px;
+}
+.description img {
+  width: 70px;
+  height: 70px;
+  border-radius: 35px;
+}
