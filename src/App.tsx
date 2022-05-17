@@ -11,19 +11,15 @@ import { Profile } from './components/profile/Profile'
 import { StatePropsType, store } from './components/redux/Store'
 import { Settings } from './components/settings/Settings'
 
-const App = (props: StatePropsType) => {
-  const state = props.store.getState()
+const App = () => {
   return (
     <div className="app-wrapper">
       <Header />
-      <Navbar friendData={state.sidebarPage.friendData} />
+      <Navbar />
       <div className="app-wrapper-content">
         <Routes>
-          <Route path="/profile" element={<Profile store={props.store} />} />
-          <Route
-            path="/dialogs/*"
-            element={<DialogsContainer store={props.store} />}
-          />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/dialogs/*" element={<DialogsContainer />} />
           <Route path="/music" element={<Music />} />
           <Route path="/news" element={<News />} />
           <Route path="/settings" element={<Settings />} />

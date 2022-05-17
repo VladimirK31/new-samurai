@@ -1,9 +1,22 @@
 import { v1 } from 'uuid'
-import { ActionType, PostDatePropsType, ProfilePagePropsType } from './Store'
 
 const ADD_POST = 'ADD-POST'
 const UPDATE_POST_TEXT = 'UPDATE-POST-TEXT'
-let initialState = {
+
+export type PostPropsType = {
+  id: string
+  message: string
+  likecount: number
+}
+export type InitialStateType = {
+  postData: PostPropsType[]
+  newPostElement: string
+}
+export type ActionPostsType =
+  | ReturnType<typeof addPostActionCreator>
+  | ReturnType<typeof updatePostTextActionCreator>
+
+let initialState: InitialStateType = {
   postData: [
     { id: v1(), message: 'Hello,my friends!', likecount: 10 },
     {
@@ -14,13 +27,14 @@ let initialState = {
   ],
   newPostElement: 'Hello',
 }
+
 const profileReducer = (
-  state: ProfilePagePropsType = initialState,
-  action: ActionType
-) => {
+  state: InitialStateType = initialState,
+  action: ActionPostsType
+): InitialStateType => {
   switch (action.type) {
     case ADD_POST:
-      const newPost: PostDatePropsType = {
+      const newPost: PostPropsType = {
         id: v1(),
         message: state.newPostElement,
         likecount: 0,

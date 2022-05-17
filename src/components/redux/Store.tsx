@@ -18,14 +18,14 @@ export type MessagePropsType = {
   id: string
   message: string
 }
-export type PostDatePropsType = {
+type PostDatePropsType = {
   id: string
   message: string
   likecount: number
 }
 export type StatePropsType = {
   store: StorePropsType
-  dispatch: (action: ActionType) => void
+  // dispatch: (action: ActionType) => void
 }
 export type DialogPagePropsType = {
   dialogData: DialogPropsType[]
@@ -141,7 +141,7 @@ export const store: StorePropsType = {
     return this._state
   },
   dispatch(action) {
-    this._state.profilePage = profileReducer(this._state.profilePage, action)
+    // this._state.profilePage = profileReducer(this._state.profilePage, action)
     this._state.dialogPage = dialogReducer(this._state.dialogPage, action)
     this._state.sidebarPage = sidebarReducer(this._state.sidebarPage, action)
     this._rerenderEntireTree()

@@ -1,9 +1,9 @@
 import React from 'react'
-import { PostDatePropsType } from '../../redux/Store'
+import { PostPropsType } from '../../redux/Profile-reducer'
 import { Post } from './post/Post'
 import s from './Posts.module.css'
 type PostsPropsType = {
-  postData: PostDatePropsType[]
+  postData: PostPropsType[]
   newPostElement: string
   addPost: () => void
   onPostChange: (text: string) => void
