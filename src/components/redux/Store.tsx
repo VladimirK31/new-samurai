@@ -9,12 +9,12 @@ import profileReducer, {
 } from './Profile-reducer'
 import sidebarReducer from './Sidebar-reducer '
 
-export type DialogPropsType = {
+type DialogPropsType = {
   id: string
   photo: string
   name: string
 }
-export type MessagePropsType = {
+type MessagePropsType = {
   id: string
   message: string
 }
@@ -27,7 +27,7 @@ export type StatePropsType = {
   store: StorePropsType
   // dispatch: (action: ActionType) => void
 }
-export type DialogPagePropsType = {
+type DialogPagePropsType = {
   dialogData: DialogPropsType[]
   messageData: MessagePropsType[]
   newMessageElement: string
@@ -142,7 +142,7 @@ export const store: StorePropsType = {
   },
   dispatch(action) {
     // this._state.profilePage = profileReducer(this._state.profilePage, action)
-    this._state.dialogPage = dialogReducer(this._state.dialogPage, action)
+    // this._state.dialogPage = dialogReducer(this._state.dialogPage, action)
     this._state.sidebarPage = sidebarReducer(this._state.sidebarPage, action)
     this._rerenderEntireTree()
   },
