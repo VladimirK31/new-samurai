@@ -1,4 +1,4 @@
-import { MessagePropsType } from '../../redux/Store'
+import { MessagePropsType } from '../../redux/Dialog-reducer'
 import s from './../Dialogs.module.css'
 
 export const Message = (props: MessagePropsType) => {

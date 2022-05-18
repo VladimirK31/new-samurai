@@ -8,15 +8,10 @@ import { store } from './components/redux/Redux-store'
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 
-let rerenderEntireTree = () => {
-  root.render(
-    <BrowserRouter>
-      <Provider store={store}>
-        <App />
-      </Provider>
-    </BrowserRouter>
-  )
-}
-
-rerenderEntireTree()
-store.subscribe(rerenderEntireTree)
+root.render(
+  <BrowserRouter>
+    <Provider store={store}>
+      <App />
+    </Provider>
+  </BrowserRouter>
+)

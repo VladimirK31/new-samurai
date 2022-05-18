@@ -1,5 +1,4 @@
 import { v1 } from 'uuid'
-import { ActionType } from './Store'
 
 const UPDATE_MESSAGE_TEXT = 'UPDATE-MESSAGE-TEXT'
 const ADD_MESSAGE = 'ADD-MESSAGE'
@@ -67,12 +66,14 @@ const dialogReducer = (
         id: v1(),
         message: state.newMessageElement,
       }
-      state.messageData.push(newMessage)
-      state.newMessageElement = ''
-      return state
+      return {
+        ...state,
+        newMessageElement: '',
+        messageData: [...state.messageData, newMessage],
+      }
     case UPDATE_MESSAGE_TEXT:
-      state.newMessageElement = action.newMessageText
-      return state
+      return { ...state, newMessageElement: action.newMessageText }
+
     default:
       return state
   }
