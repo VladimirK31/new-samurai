@@ -1,7 +1,14 @@
 import { v1 } from 'uuid'
 import { SideBarPagePropsType } from './Store'
-
-let initialState = {
+export type FriendPropsType = {
+  id: string
+  photo: string
+  name: string
+}
+type InitialStateType = {
+  friendData: FriendPropsType[]
+}
+let initialState: InitialStateType = {
   friendData: [
     {
       id: v1(),
