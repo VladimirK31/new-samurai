@@ -1,6 +1,8 @@
+import axios from 'axios'
 import { v1 } from 'uuid'
 import { UserType } from '../redux/Users-reducer'
 import s from './Users.module.css'
+import userPhoto from '../../assets/images/avatarki.jpg'
 
 type UsersPropsType = {
   users: UserType[]
@@ -11,35 +13,41 @@ type UsersPropsType = {
 
 export const Users = (props: UsersPropsType) => {
   if (props.users.length === 0) {
-    props.setUser([
-      {
-        id: v1(),
-        photo:
-          'https://lumpics.ru/wp-content/uploads/2017/11/Programmyi-dlya-sozdaniya-avatarok.png',
-        fullName: 'Vovka',
-        followed: true,
-        status: 'Im number one',
-        location: { cityName: 'Minsk', country: 'Belarus' },
-      },
-      {
-        id: v1(),
-        photo:
-          'https://lumpics.ru/wp-content/uploads/2017/11/Programmyi-dlya-sozdaniya-avatarok.png',
-        fullName: 'Sashka',
-        followed: true,
-        status: 'Hey,man',
-        location: { cityName: 'Minsk', country: 'Belarus' },
-      },
-      {
-        id: v1(),
-        photo:
-          'https://lumpics.ru/wp-content/uploads/2017/11/Programmyi-dlya-sozdaniya-avatarok.png',
-        fullName: 'Zhenya',
-        followed: true,
-        status: 'Im program man',
-        location: { cityName: 'Minsk', country: 'Belarus' },
-      },
-    ])
+    axios
+      .get('https://social-network.samuraijs.com/api/1.0/users')
+      .then((response) => {
+        props.setUser(response.data.items)
+      })
+
+    // props.setUser([
+    //   {
+    //     id: v1(),
+    //     photo:
+    //       'https://lumpics.ru/wp-content/uploads/2017/11/Programmyi-dlya-sozdaniya-avatarok.png',
+    //     fullName: 'Vovka',
+    //     followed: true,
+    //     status: 'Im number one',
+    //     location: { cityName: 'Minsk', country: 'Belarus' },
+    //   },
+    //   {
+    //     id: v1(),
+    //     photo:
+    //       'https://lumpics.ru/wp-content/uploads/2017/11/Programmyi-dlya-sozdaniya-avatarok.png',
+    //     fullName: 'Sashka',
+    //     followed: true,
+    //     status: 'Hey,man',
+    //     location: { cityName: 'Minsk', country: 'Belarus' },
+    //   },
+    //   {
+    //     id: v1(),
+    //     photo:
+    //       'https://lumpics.ru/wp-content/uploads/2017/11/Programmyi-dlya-sozdaniya-avatarok.png',
+    //     fullName: 'Zhenya',
+    //     followed: true,
+    //     status: 'Im program man',
+    //     location: { cityName: 'Minsk', country: 'Belarus' },
+    //   },
+    // ])
   }
   return (
     <div>
@@ -47,7 +55,10 @@ export const Users = (props: UsersPropsType) => {
         return (
           <div key={u.id}>
             <span>
-              <img src={u.photo} className={s.usersPhoto} />
+              <img
+                src={u.photos.small !== null ? u.photos.small : userPhoto}
+                className={s.usersPhoto}
+              />
               <div>
                 {u.followed ? (
                   <button
@@ -69,12 +80,12 @@ export const Users = (props: UsersPropsType) => {
               </div>
             </span>
             <span>
-              <div>{u.fullName}</div>
+              <div>{u.name}</div>
               <div>{u.status}</div>
             </span>
             <span>
-              <div>{u.location.cityName}</div>
-              <div>{u.location.country}</div>
+              <div>{'u.location.cityName'}</div>
+              <div>{'u.location.country'}</div>
             </span>
           </div>
         )

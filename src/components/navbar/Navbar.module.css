@@ -1,7 +1,7 @@
 .navbar {
   grid-area: n;
   background-color: aquamarine;
-  padding-left: 50px;
+  padding-left: 10px;
   padding-top: 10px;
   line-height: 2;
 }
