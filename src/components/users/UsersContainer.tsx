@@ -8,6 +8,7 @@ import {
   UserType,
 } from '../redux/Users-reducer'
 import { Users } from './Users'
+import { UsersClassComponent } from './UsersClassComponent'
 const mapStateToProps = (state: AppStateType) => {
   return { users: state.usersPage.users }
 }
@@ -27,4 +28,4 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
 export const UsersContainer = connect(
   mapStateToProps,
   mapDispatchToProps
-)(Users)
+)(UsersClassComponent)

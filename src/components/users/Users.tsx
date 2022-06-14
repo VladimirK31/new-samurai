@@ -12,13 +12,14 @@ type UsersPropsType = {
 }
 
 export const Users = (props: UsersPropsType) => {
-  if (props.users.length === 0) {
-    axios
-      .get('https://social-network.samuraijs.com/api/1.0/users')
-      .then((response) => {
-        props.setUser(response.data.items)
-      })
-
+  let getUser = () => {
+    if (props.users.length === 0) {
+      axios
+        .get('https://social-network.samuraijs.com/api/1.0/users')
+        .then((response) => {
+          props.setUser(response.data.items)
+        })
+    }
     // props.setUser([
     //   {
     //     id: v1(),
@@ -49,16 +50,21 @@ export const Users = (props: UsersPropsType) => {
     //   },
     // ])
   }
+
   return (
     <div>
+      <button onClick={getUser}>Get user</button>
       {props.users.map((u) => {
         return (
           <div key={u.id}>
             <span>
-              <img
-                src={u.photos.small !== null ? u.photos.small : userPhoto}
-                className={s.usersPhoto}
-              />
+              <div>
+                <img
+                  src={u.photos.small !== null ? u.photos.small : userPhoto}
+                  className={s.usersPhoto}
+                />
+              </div>
+
               <div>
                 {u.followed ? (
                   <button
