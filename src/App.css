@@ -8,8 +8,6 @@
   grid-template-columns: 2fr 10fr;
   grid-gap: 10px;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
-
-  font-weight: 900;
 }
 
 .app-wrapper-content {
