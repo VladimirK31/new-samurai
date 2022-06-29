@@ -4,6 +4,7 @@ const UNFOLLOW = 'UNFOLLOW'
 const SET_USERS = 'SET_USERS'
 const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE'
 const SET_TOTAL_USER_COUNT = 'SET_TOTAL_USER_COUNT'
+const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING'
 
 type LocationType = {
   cityName: string
@@ -22,6 +23,7 @@ export type InitialStateType = {
   pageSize: number
   totalUsersCount: number
   currentPage: number
+  isFetching: boolean
 }
 type ActionType =
   | ReturnType<typeof followAC>
@@ -29,12 +31,14 @@ type ActionType =
   | ReturnType<typeof setUsersAC>
   | ReturnType<typeof setCurrentPageAC>
   | ReturnType<typeof setTotalUserCountAC>
+  | ReturnType<typeof toggleIsFetchingAC>
 
 let initialState: InitialStateType = {
   users: [],
-  pageSize: 5,
+  pageSize: 100,
   totalUsersCount: 10,
   currentPage: 6,
+  isFetching: false,
 }
 // редьюсер принимает стэйт и экшн и возвращает новый стэйт
 const usersReducer = (
@@ -69,6 +73,8 @@ const usersReducer = (
       return { ...state, currentPage: action.currentPage }
     case SET_TOTAL_USER_COUNT:
       return { ...state, totalUsersCount: action.totalCount }
+    case TOGGLE_IS_FETCHING:
+      return { ...state, isFetching: action.isFetching }
     default:
       return state
   }
@@ -98,6 +104,11 @@ export const setTotalUserCountAC = (totalCount: number) =>
   ({
     type: SET_TOTAL_USER_COUNT,
     totalCount,
+  } as const)
+export const toggleIsFetchingAC = (isFetching: boolean) =>
+  ({
+    type: TOGGLE_IS_FETCHING,
+    isFetching,
   } as const)
 
 export default usersReducer
