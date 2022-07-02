@@ -6,7 +6,7 @@ type FriendsSidebarType = {
 export const FriendsSidebar = (props: FriendsSidebarType) => {
   let friendsSidebarItem = props.friendData.map((el) => {
     return (
-      <div className={s.sidebarFriends}>
+      <div key={el.id} className={s.sidebarFriends}>
         <div>
           <img src={el.photo} />
         </div>

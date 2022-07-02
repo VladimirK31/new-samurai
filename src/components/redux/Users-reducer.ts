@@ -26,16 +26,16 @@ export type InitialStateType = {
   isFetching: boolean
 }
 type ActionType =
-  | ReturnType<typeof followAC>
-  | ReturnType<typeof unFollowAC>
-  | ReturnType<typeof setUsersAC>
-  | ReturnType<typeof setCurrentPageAC>
-  | ReturnType<typeof setTotalUserCountAC>
-  | ReturnType<typeof toggleIsFetchingAC>
+  | ReturnType<typeof follow>
+  | ReturnType<typeof unFollow>
+  | ReturnType<typeof setUsers>
+  | ReturnType<typeof setCurrentPage>
+  | ReturnType<typeof setTotalUserCount>
+  | ReturnType<typeof toggleIsFetching>
 
 let initialState: InitialStateType = {
   users: [],
-  pageSize: 100,
+  pageSize: 5,
   totalUsersCount: 10,
   currentPage: 6,
   isFetching: false,
@@ -80,32 +80,32 @@ const usersReducer = (
   }
 }
 //экшн при нажатии на кнопку изменяет статус фолоу анфолоу
-export const followAC = (userID: string) =>
+export const follow = (userID: string) =>
   ({
     type: FOLLOW,
     userID,
   } as const)
-export const unFollowAC = (userID: string) =>
+export const unFollow = (userID: string) =>
   ({
     type: UNFOLLOW,
     userID,
   } as const)
-export const setUsersAC = (users: UserType[]) =>
+export const setUsers = (users: UserType[]) =>
   ({
     type: SET_USERS,
     users,
   } as const)
-export const setCurrentPageAC = (currentPage: number) =>
+export const setCurrentPage = (currentPage: number) =>
   ({
     type: SET_CURRENT_PAGE,
     currentPage,
   } as const)
-export const setTotalUserCountAC = (totalCount: number) =>
+export const setTotalUserCount = (totalCount: number) =>
   ({
     type: SET_TOTAL_USER_COUNT,
     totalCount,
   } as const)
-export const toggleIsFetchingAC = (isFetching: boolean) =>
+export const toggleIsFetching = (isFetching: boolean) =>
   ({
     type: TOGGLE_IS_FETCHING,
     isFetching,

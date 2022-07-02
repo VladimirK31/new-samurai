@@ -15,7 +15,7 @@ type UsersContainerPropsType = {
   isFetching: boolean
   follow: (userId: string) => void
   unFollow: (userId: string) => void
-  setUser: (users: UserType[]) => void
+  setUsers: (users: UserType[]) => void
   setCurrentPage: (pageNumber: number) => void
   setTotalUserCount: (totalCount: number) => void
   toggleIsFetching: (isFetching: boolean) => void
@@ -34,7 +34,7 @@ export class UsersClassComponent extends React.Component<UsersContainerPropsType
         ) // после ? в запросе на сервер указываем page текущую страницу и count= количество юзеров на одной странице
         .then((response) => {
           this.props.toggleIsFetching(false)
-          this.props.setUser(response.data.items)
+          this.props.setUsers(response.data.items)
           this.props.setTotalUserCount(response.data.totalCount)
         })
     }
@@ -49,7 +49,7 @@ export class UsersClassComponent extends React.Component<UsersContainerPropsType
       ) // после ? в запросе на сервер указываем page текущую страницу и count= количество юзеров на одной странице
       .then((response) => {
         this.props.toggleIsFetching(false)
-        this.props.setUser(response.data.items)
+        this.props.setUsers(response.data.items)
       })
   }
 

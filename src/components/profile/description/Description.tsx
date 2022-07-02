@@ -1,12 +1,13 @@
 import s from './Description.module.css'
 
-export const Description = () => {
+export const Description = (props: any) => {
+  debugger
   return (
     <div className={s.description}>
       <div>
-        <img src="https://lumpics.ru/wp-content/uploads/2017/11/Programmyi-dlya-sozdaniya-avatarok.png" />
+        <img src={props.profile.photos.large} />
       </div>
-      <div>Description</div>
+      {props.profile.aboutMe}
     </div>
   )
 }

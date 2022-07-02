@@ -11,14 +11,10 @@ type PostsPropsType = {
 
 export const Posts = (props: PostsPropsType) => {
   let postsItem = props.postData.map((p) => (
-    <Post id={p.id} message={p.message} likecount={p.likecount} />
+    <Post key={p.id} id={p.id} message={p.message} likecount={p.likecount} />
   ))
 
   let newPostText = React.createRef<HTMLTextAreaElement>()
-
-  let addPost = () => {
-    props.addPost()
-  }
 
   let onPostChange = () => {
     let text = newPostText.current?.value
@@ -37,7 +33,7 @@ export const Posts = (props: PostsPropsType) => {
           value={props.newPostElement}
         />
         <div>
-          <button onClick={addPost} className={s.button}>
+          <button onClick={props.addPost} className={s.button}>
             add post
           </button>
         </div>

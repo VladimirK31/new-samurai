@@ -3,6 +3,7 @@ import { v1 } from 'uuid'
 import { UserType } from '../redux/Users-reducer'
 import s from './Users.module.css'
 import userPhoto from '../../assets/images/avatarki.jpg'
+import { NavLink } from 'react-router-dom'
 
 export type UsersPropsType = {
   users: UserType[]
@@ -17,7 +18,7 @@ export type UsersPropsType = {
 export const Users = (props: UsersPropsType) => {
   //вычисляем количество страниц(делим общее число юзеров на количество юзеров на одной странице)
   //округляем страницы в к большему значению Math.ceil
-  let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)
+  let pagesCount = Math.ceil(100 / props.pageSize)
   //создали переменную для 1 страницы с юзерами  и заполняем ее
   let pages = []
   for (let i = 1; i <= pagesCount; i++) {
@@ -41,13 +42,15 @@ export const Users = (props: UsersPropsType) => {
       </div>
       {props.users.map((u) => {
         return (
-          <div key={u.id}>
+          <div>
             <span>
               <div>
-                <img
-                  src={u.photos.small !== null ? u.photos.small : userPhoto}
-                  className={s.usersPhoto}
-                />
+                <NavLink to={'/profile'}>
+                  <img
+                    src={u.photos.small !== null ? u.photos.small : userPhoto}
+                    className={s.usersPhoto}
+                  />
+                </NavLink>
               </div>
 
               <div>

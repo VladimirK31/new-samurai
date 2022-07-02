@@ -12,4 +12,4 @@ export const rootReducer = combineReducers({
 })
 
 export type AppStateType = ReturnType<typeof rootReducer>
-export const store = legacy_createStore(rootReducer)
+export let store: any = legacy_createStore(rootReducer)

@@ -2,19 +2,48 @@ import { v1 } from 'uuid'
 
 const ADD_POST = 'ADD-POST'
 const UPDATE_POST_TEXT = 'UPDATE-POST-TEXT'
+const SET_USER_PROFILE = 'SET_USER_PROFILE'
 
 export type PostPropsType = {
   id: string
   message: string
   likecount: number
 }
+export type Photos = {
+  large: string
+  small: string
+}
+export type ProfileAPIType = {
+  contacts?: {
+    facebook: string
+    website: string
+    vk: string
+    twitter: string
+    instagram: string
+    youtube: string
+    github: string
+    mainLink: string
+  }
+  lookingForAJob?: boolean
+  lookingForAJobDescription?: string
+  userId: string
+  fullName: string
+  aboutMe: string
+  photos: Photos
+  status: string
+}
+
 export type InitialStateType = {
   postData: PostPropsType[]
   newPostElement: string
+  profile: ProfileAPIType
+  myStatus: string
 }
+
 export type ActionPostsType =
   | ReturnType<typeof addPostActionCreator>
   | ReturnType<typeof updatePostTextActionCreator>
+  | ReturnType<typeof setUsersProfile>
 
 let initialState: InitialStateType = {
   postData: [
@@ -26,6 +55,17 @@ let initialState: InitialStateType = {
     },
   ],
   newPostElement: 'Hello',
+  profile: {
+    fullName: '',
+    aboutMe: '',
+    photos: {
+      large: '',
+      small: '',
+    },
+    status: '',
+    userId: '',
+  },
+  myStatus: '',
 }
 
 const profileReducer = (
@@ -50,7 +90,8 @@ const profileReducer = (
         ...state,
         newPostElement: action.newText,
       }
-
+    case SET_USER_PROFILE:
+      return { ...state, profile: action.profile }
     default:
       return state
   }
@@ -64,4 +105,10 @@ export const updatePostTextActionCreator = (text: string) =>
     type: UPDATE_POST_TEXT,
     newText: text,
   } as const)
+export const setUsersProfile = (profile: any) =>
+  ({
+    type: SET_USER_PROFILE,
+    profile,
+  } as const)
+
 export default profileReducer
