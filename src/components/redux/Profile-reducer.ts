@@ -105,7 +105,7 @@ export const updatePostTextActionCreator = (text: string) =>
     type: UPDATE_POST_TEXT,
     newText: text,
   } as const)
-export const setUsersProfile = (profile: any) =>
+export const setUsersProfile = (profile: ProfileAPIType) =>
   ({
     type: SET_USER_PROFILE,
     profile,

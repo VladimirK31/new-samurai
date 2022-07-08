@@ -45,7 +45,7 @@ export const Users = (props: UsersPropsType) => {
           <div>
             <span>
               <div>
-                <NavLink to={'/profile'}>
+                <NavLink to={`/profile/${u.id}`}>
                   <img
                     src={u.photos.small !== null ? u.photos.small : userPhoto}
                     className={s.usersPhoto}
