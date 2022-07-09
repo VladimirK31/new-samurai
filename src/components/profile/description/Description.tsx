@@ -5,7 +5,7 @@ export const Description = (props: any) => {
   if (!props.profile) {
     return <Preloader />
   }
-  debugger
+
   return (
     <div className={s.description}>
       <div>

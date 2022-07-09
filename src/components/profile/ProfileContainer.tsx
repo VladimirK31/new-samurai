@@ -31,7 +31,6 @@ export type MapDispatchToProps = {
 export type PropsType = MapStateToPropsType & MapDispatchToProps & RouterType
 
 function withRouter(Component: typeof React.Component) {
-  debugger
   return (props: object) => {
     let params = useParams()
     let navigate = useNavigate()
@@ -41,7 +40,6 @@ function withRouter(Component: typeof React.Component) {
 }
 export class ProfileContainer extends React.Component<CommonPropsType> {
   componentDidMount() {
-    debugger
     let userId = this.props.router.params.userId
     axios
       .get(`https://social-network.samuraijs.com/api/1.0/profile/` + userId)

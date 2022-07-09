@@ -30,7 +30,10 @@ export class UsersClassComponent extends React.Component<UsersContainerPropsType
     if (this.props.users.length === 0) {
       axios
         .get(
-          `https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`
+          `https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`,
+          {
+            withCredentials: true,
+          }
         ) // после ? в запросе на сервер указываем page текущую страницу и count= количество юзеров на одной странице
         .then((response) => {
           this.props.toggleIsFetching(false)
@@ -45,7 +48,10 @@ export class UsersClassComponent extends React.Component<UsersContainerPropsType
     this.props.setCurrentPage(pageNumber)
     axios
       .get(
-        `https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`
+        `https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`,
+        {
+          withCredentials: true,
+        }
       ) // после ? в запросе на сервер указываем page текущую страницу и count= количество юзеров на одной странице
       .then((response) => {
         this.props.toggleIsFetching(false)
