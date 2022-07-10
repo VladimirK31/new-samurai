@@ -4,8 +4,8 @@ import { Dispatch } from 'redux'
 import {
   addPostActionCreator,
   updatePostTextActionCreator,
-} from '../../redux/Profile-reducer'
-import { AppStateType } from '../../redux/Redux-store'
+} from '../../../redux/Profile-reducer'
+import { AppStateType } from '../../../redux/Redux-store'
 import { Posts } from './Posts'
 
 // type PostsPropsType = {

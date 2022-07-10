@@ -1,4 +1,4 @@
-import { AppStateType } from '../redux/Redux-store'
+import { AppStateType } from '../../redux/Redux-store'
 import { Background } from './background/Background'
 import { Description } from './description/Description'
 import { PostsContainer } from './posts/PostsContainer'

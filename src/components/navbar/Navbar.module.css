@@ -1,14 +1,33 @@
 .navbar {
+  width: 200px;
   grid-area: n;
-  background-color: aquamarine;
+  background-color: #222636;
   padding-left: 10px;
   padding-top: 10px;
   line-height: 2;
+  border-right: 25px solid #222636;
+  height: 100%;
 }
 .item a {
+  font-weight: 600;
+  font-size: 12px;
+  float: none;
+  padding: 15px 35px;
+  font-family: Lato, sans-serif;
+  color: #ffffff;
   text-decoration: none;
-  color: black;
 }
-.item a.active {
-  color: azure;
+.item {
+  font-weight: 600;
+
+  float: none;
+  padding: 15px 35px;
+  font-family: Lato, sans-serif;
+}
+.item :active {
+  color: aqua;
+}
+.item :hover {
+  color: aqua;
+  font-size: 15px;
 }

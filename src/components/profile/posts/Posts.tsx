@@ -1,5 +1,5 @@
 import React from 'react'
-import { PostPropsType } from '../../redux/Profile-reducer'
+import { PostPropsType } from '../../../redux/Profile-reducer'
 import { Post } from './post/Post'
 import s from './Posts.module.css'
 type PostsPropsType = {

@@ -2,8 +2,8 @@ import axios from 'axios'
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
-import { ProfileAPIType, setUsersProfile } from '../redux/Profile-reducer'
-import { AppStateType } from '../redux/Redux-store'
+import { ProfileAPIType, setUsersProfile } from '../../redux/Profile-reducer'
+import { AppStateType } from '../../redux/Redux-store'
 import { Profile } from './Profile'
 
 const mapStateToProps = (state: AppStateType) => {

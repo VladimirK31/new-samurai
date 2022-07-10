@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom'
-import { DialogPropsType } from '../../redux/Dialog-reducer'
+import { DialogPropsType } from '../../../redux/Dialog-reducer'
 
 import s from './Dialog.module.css'
 

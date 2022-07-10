@@ -1,4 +1,4 @@
-import { PostPropsType } from '../../../redux/Profile-reducer'
+import { PostPropsType } from '../../../../redux/Profile-reducer'
 import s from './Post.module.css'
 
 export const Post = (props: PostPropsType) => {

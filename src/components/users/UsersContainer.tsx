@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { AppStateType } from '../redux/Redux-store'
+import { AppStateType } from '../../redux/Redux-store'
 import {
   follow,
   InitialStateType,
@@ -8,7 +8,7 @@ import {
   setUsers,
   toggleIsFetching,
   unFollow,
-} from '../redux/Users-reducer'
+} from '../../redux/Users-reducer'
 import { UsersClassComponent } from './UsersClassComponent'
 
 const mapStateToProps = (state: AppStateType): InitialStateType => {

@@ -4,8 +4,8 @@ import { Dispatch } from 'redux'
 import {
   addMessageActionCreator,
   updateMessageTextActionCreator,
-} from '../redux/Dialog-reducer'
-import { AppStateType } from '../redux/Redux-store'
+} from '../../redux/Dialog-reducer'
+import { AppStateType } from '../../redux/Redux-store'
 import { Dialogs } from './Dialogs'
 
 // export type DialogsPropsType = {

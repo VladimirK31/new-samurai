@@ -1,5 +1,5 @@
 import React from 'react'
-import { DialogPropsType, MessagePropsType } from '../redux/Dialog-reducer'
+import { DialogPropsType, MessagePropsType } from '../../redux/Dialog-reducer'
 import { Dialog } from './dialog/Dialog'
 import s from './Dialogs.module.css'
 import { Message } from './message/Message'

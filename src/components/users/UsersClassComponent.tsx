@@ -1,11 +1,12 @@
 import axios from 'axios'
 import { v1 } from 'uuid'
-import { UserType } from '../redux/Users-reducer'
+import { UserType } from '../../redux/Users-reducer'
 import s from './Users.module.css'
 import userPhoto from '../../assets/images/avatarki.jpg'
 import React from 'react'
 import { Users, UsersPropsType } from './Users'
 import { Preloader } from '../common/preloader/Preloader'
+import { usersAPI } from '../../api/Api'
 
 type UsersContainerPropsType = {
   users: UserType[]
@@ -28,17 +29,12 @@ export class UsersClassComponent extends React.Component<UsersContainerPropsType
   componentDidMount() {
     this.props.toggleIsFetching(true)
     if (this.props.users.length === 0) {
-      axios
-        .get(
-          `https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`,
-          {
-            withCredentials: true,
-          }
-        ) // после ? в запросе на сервер указываем page текущую страницу и count= количество юзеров на одной странице
-        .then((response) => {
+      usersAPI
+        .getUsers(this.props.currentPage, this.props.pageSize)
+        .then((data: { items: UserType[]; totalCount: number }) => {
           this.props.toggleIsFetching(false)
-          this.props.setUsers(response.data.items)
-          this.props.setTotalUserCount(response.data.totalCount)
+          this.props.setUsers(data.items)
+          this.props.setTotalUserCount(data.totalCount)
         })
     }
   }
@@ -46,16 +42,11 @@ export class UsersClassComponent extends React.Component<UsersContainerPropsType
   onPageChanged = (pageNumber: number) => {
     this.props.toggleIsFetching(true)
     this.props.setCurrentPage(pageNumber)
-    axios
-      .get(
-        `https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`,
-        {
-          withCredentials: true,
-        }
-      ) // после ? в запросе на сервер указываем page текущую страницу и count= количество юзеров на одной странице
-      .then((response) => {
+    usersAPI
+      .getUsers(pageNumber, this.props.pageSize)
+      .then((data: { items: UserType[] }) => {
         this.props.toggleIsFetching(false)
-        this.props.setUsers(response.data.items)
+        this.props.setUsers(data.items)
       })
   }
 

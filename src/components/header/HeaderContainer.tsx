@@ -5,8 +5,8 @@ import {
   InitialStateType,
   setAuthStatus,
   setAuthUserData,
-} from '../redux/Auth-reducer'
-import { AppStateType } from '../redux/Redux-store'
+} from '../../redux/Auth-reducer'
+import { AppStateType } from '../../redux/Redux-store'
 import { Header } from './Header'
 import s from './Header.module.css'
 type HeaderContainerPropsType = MapDispatchToProps & InitialStateType

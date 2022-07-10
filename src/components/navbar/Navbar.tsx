@@ -7,24 +7,24 @@ export const Navbar = () => {
   return (
     <nav className={s.navbar}>
       <div className={s.item}>
-        <NavLink to="/profile">Profile</NavLink>
+        <NavLink to="/profile">PROFILE</NavLink>
       </div>
       <div className={s.item}>
-        <NavLink to="dialogs">Message</NavLink>
+        <NavLink to="dialogs">MESSAGE</NavLink>
       </div>
       <div className={s.item}>
-        <NavLink to="music">Music</NavLink>
+        <NavLink to="music">MUSIC</NavLink>
       </div>
       <div className={s.item}>
-        <NavLink to="news">News</NavLink>
+        <NavLink to="news">NEWS</NavLink>
       </div>
       <div className={s.item}>
-        <NavLink to="settings">Settings</NavLink>
+        <NavLink to="settings">SETTINGS</NavLink>
       </div>
       <div className={s.item}>
-        <NavLink to="users">Users</NavLink>
+        <NavLink to="users">USERS</NavLink>
       </div>
-      <FriendsSidebarContainer />
+      {/* <FriendsSidebarContainer /> */}
     </nav>
   )
 }

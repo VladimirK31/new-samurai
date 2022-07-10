@@ -1,11 +1,15 @@
 .header {
   grid-area: h;
-  background-color: cyan;
+  background-color: #2a2f43;
 }
-.header img {
-  width: 60px;
-  opacity: 0.3;
+.logo {
+  background-color: aquamarine;
+  height: 60px;
+  width: 235px;
+  display: table;
+  text-align: center;
 }
 .loginBlock {
   float: right;
+  color: crimson;
 }

@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { AppStateType } from '../../redux/Redux-store'
+import { AppStateType } from '../../../redux/Redux-store'
 import { FriendsSidebar } from './FriendsSidebar'
 
 const mapStateToProps = (state: AppStateType) => {
