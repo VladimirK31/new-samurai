@@ -6,6 +6,7 @@ import {
   setCurrentPage,
   setTotalUserCount,
   setUsers,
+  toggleFollowingProgress,
   toggleIsFetching,
   unFollow,
 } from '../../redux/Users-reducer'
@@ -18,6 +19,7 @@ const mapStateToProps = (state: AppStateType): InitialStateType => {
     totalUsersCount: state.usersPage.totalUsersCount,
     currentPage: state.usersPage.currentPage,
     isFetching: state.usersPage.isFetching,
+    followingInProgress: state.usersPage.followingInProgress,
   }
 }
 //избавляемся от функции
@@ -50,4 +52,5 @@ export const UsersContainer = connect(mapStateToProps, {
   setCurrentPage,
   setTotalUserCount,
   toggleIsFetching,
+  toggleFollowingProgress,
 })(UsersClassComponent)
