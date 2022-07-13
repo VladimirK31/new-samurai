@@ -2,7 +2,7 @@ import axios from 'axios'
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
-import { ProfileAPIType, setUsersProfile } from '../../redux/Profile-reducer'
+import { getUserProfile, ProfileAPIType } from '../../redux/Profile-reducer'
 import { AppStateType } from '../../redux/Redux-store'
 import { Profile } from './Profile'
 
@@ -26,7 +26,7 @@ type RouterType = {
   }
 }
 export type MapDispatchToProps = {
-  setUsersProfile: (profile: ProfileAPIType) => void
+  getUserProfile: (userId: string) => void
 }
 export type PropsType = MapStateToPropsType & MapDispatchToProps & RouterType
 
@@ -41,12 +41,10 @@ function withRouter(Component: typeof React.Component) {
 export class ProfileContainer extends React.Component<CommonPropsType> {
   componentDidMount() {
     let userId = this.props.router.params.userId
-    axios
-      .get(`https://social-network.samuraijs.com/api/1.0/profile/` + userId)
-      // после ? в запросе на сервер указываем page текущую страницу и count= количество юзеров на одной странице
-      .then((response) => {
-        this.props.setUsersProfile(response.data)
-      })
+    // if (!userId) {
+    //   userId = ''
+    // }
+    this.props.getUserProfile(userId)
   }
   render() {
     return (
@@ -60,6 +58,4 @@ export class ProfileContainer extends React.Component<CommonPropsType> {
 }
 const ProfileContainerURL = withRouter(ProfileContainer)
 
-export default connect(mapStateToProps, { setUsersProfile })(
-  ProfileContainerURL
-)
+export default connect(mapStateToProps, { getUserProfile })(ProfileContainerURL)

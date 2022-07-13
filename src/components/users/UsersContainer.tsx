@@ -2,12 +2,9 @@ import { connect } from 'react-redux'
 import { AppStateType } from '../../redux/Redux-store'
 import {
   follow,
+  getUsers,
   InitialStateType,
   setCurrentPage,
-  setTotalUserCount,
-  setUsers,
-  toggleFollowingProgress,
-  toggleIsFetching,
   unFollow,
 } from '../../redux/Users-reducer'
 import { UsersClassComponent } from './UsersClassComponent'
@@ -47,10 +44,7 @@ const mapStateToProps = (state: AppStateType): InitialStateType => {
 // }
 export const UsersContainer = connect(mapStateToProps, {
   follow,
-  setUsers,
   unFollow,
   setCurrentPage,
-  setTotalUserCount,
-  toggleIsFetching,
-  toggleFollowingProgress,
+  getUsers,
 })(UsersClassComponent)

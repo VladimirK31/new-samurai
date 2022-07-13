@@ -1,4 +1,6 @@
+import { Dispatch } from 'redux'
 import { v1 } from 'uuid'
+import { authAPI } from '../api/Api'
 const SET_USER_DATA = 'SET_USER_DATA'
 const SET_AUTH_STATUS = 'SET_AUTH_STATUS'
 
@@ -42,4 +44,13 @@ export const setAuthUserData = (userData: InitialStateType) =>
   ({ type: SET_USER_DATA, userData } as const)
 export const setAuthStatus = (isAuth: boolean) =>
   ({ type: SET_AUTH_STATUS, isAuth } as const)
+
+export const getAuthUserData = () => (dispatch: Dispatch) => {
+  authAPI.me().then((response) => {
+    if (response.data.resultCode === 0) {
+      dispatch(setAuthUserData(response.data.data))
+      dispatch(setAuthStatus(true))
+    }
+  })
+}
 export default authReducer

@@ -8,10 +8,9 @@ type HeaderPropsType = {
 export const Header = (props: HeaderPropsType) => {
   return (
     <header className={s.header}>
-      <div className={s.logo}>
+      <div>
         <p>LOGO</p>
       </div>
-      <div></div>
       <div className={s.loginBlock}>
         {props.isAuth ? (
           props.userLogin
