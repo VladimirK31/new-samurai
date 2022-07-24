@@ -6,6 +6,7 @@ import {
   updateMessageTextActionCreator,
 } from '../../redux/Dialog-reducer'
 import { AppStateType } from '../../redux/Redux-store'
+import { WithAuthRedirect } from '../../hoc/WithAuthRedirect'
 import { Dialogs } from './Dialogs'
 
 // export type DialogsPropsType = {
@@ -35,7 +36,6 @@ const mapStateToProps = (state: AppStateType) => {
     newMessageElement: state.dialogPage.newMessageElement,
     messageData: state.dialogPage.messageData,
     dialogData: state.dialogPage.dialogData,
-    isAuth: state.auth.isAuth,
   }
 }
 const mapDispatchToProps = (dispatch: Dispatch) => {
@@ -48,8 +48,10 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
     },
   }
 }
-
+//HOC WithAuthRedirect оборачиваем нашу компоненту, контейнерной компонентой,для проверки залогинены мы или нет
+// здесь через создание новой переменной AuthRedirectComponent
+let AuthRedirectComponent = WithAuthRedirect(Dialogs)
 export const DialogsContainer = connect(
   mapStateToProps,
   mapDispatchToProps
-)(Dialogs)
+)(AuthRedirectComponent)

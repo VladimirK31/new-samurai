@@ -4,12 +4,12 @@ import { connect } from 'react-redux'
 import { Navigate, useLocation, useNavigate, useParams } from 'react-router-dom'
 import { getUserProfile, ProfileAPIType } from '../../redux/Profile-reducer'
 import { AppStateType } from '../../redux/Redux-store'
+import { WithAuthRedirect } from '../../hoc/WithAuthRedirect'
 import { Profile } from './Profile'
 
 const mapStateToProps = (state: AppStateType) => {
   return {
     profile: state.profilePage.profile,
-    isAuth: state.auth.isAuth,
   }
 }
 type PathParamsType = {
@@ -50,7 +50,7 @@ export class ProfileContainer extends React.Component<CommonPropsType> {
   }
   render() {
     //(!this.props.isAuth)return то же самое что и this.props.isAuth == false
-    if (this.props.isAuth == false) return <Navigate to={'/login'} />
+
     return (
       <div>
         <div>
@@ -61,5 +61,8 @@ export class ProfileContainer extends React.Component<CommonPropsType> {
   }
 }
 const ProfileContainerURL = withRouter(ProfileContainer)
-
-export default connect(mapStateToProps, { getUserProfile })(ProfileContainerURL)
+//HOC WithAuthRedirect оборачиваем нашу компоненту, контейнерной компонентой,для проверки залогинены
+//мы или нет и делает редирект
+export default WithAuthRedirect(
+  connect(mapStateToProps, { getUserProfile })(ProfileContainerURL)
+)
