@@ -1,7 +1,7 @@
 import axios from 'axios'
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { useLocation, useNavigate, useParams } from 'react-router-dom'
+import { Navigate, useLocation, useNavigate, useParams } from 'react-router-dom'
 import { getUserProfile, ProfileAPIType } from '../../redux/Profile-reducer'
 import { AppStateType } from '../../redux/Redux-store'
 import { Profile } from './Profile'
@@ -9,6 +9,7 @@ import { Profile } from './Profile'
 const mapStateToProps = (state: AppStateType) => {
   return {
     profile: state.profilePage.profile,
+    isAuth: state.auth.isAuth,
   }
 }
 type PathParamsType = {
@@ -17,6 +18,7 @@ type PathParamsType = {
 type CommonPropsType = Component<PathParamsType> & PropsType
 export type MapStateToPropsType = {
   profile: ProfileAPIType
+  isAuth: boolean
 }
 type RouterType = {
   router: {
@@ -47,6 +49,8 @@ export class ProfileContainer extends React.Component<CommonPropsType> {
     this.props.getUserProfile(userId)
   }
   render() {
+    //(!this.props.isAuth)return то же самое что и this.props.isAuth == false
+    if (this.props.isAuth == false) return <Navigate to={'/login'} />
     return (
       <div>
         <div>

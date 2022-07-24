@@ -1,11 +1,11 @@
 .navbar {
-  width: 200px;
+  width: 250px;
   grid-area: n;
   background-color: #222636;
-  padding-left: 10px;
-  padding-top: 10px;
-  line-height: 2;
-  border-right: 25px solid #222636;
+  /* padding-left: 10px; */
+  /* padding-top: 10px; */
+  /* line-height: 2; */
+  border-right: 25px solid #223375;
   height: 100%;
 }
 .item a {

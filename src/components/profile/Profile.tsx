@@ -1,3 +1,4 @@
+import { Navigate } from 'react-router-dom'
 import { AppStateType } from '../../redux/Redux-store'
 import { Background } from './background/Background'
 import { Description } from './description/Description'

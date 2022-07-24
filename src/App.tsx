@@ -4,6 +4,7 @@ import './App.css'
 import { DialogsContainer } from './components/dialogs/DialogsContainer'
 import { Header } from './components/header/Header'
 import HeaderContainer from './components/header/HeaderContainer'
+import { Login } from './components/login/Login'
 import { Music } from './components/music/Music'
 import { Navbar } from './components/navbar/Navbar'
 import { News } from './components/news/News'
@@ -24,6 +25,7 @@ const App = () => {
           <Route path="/music" element={<Music />} />
           <Route path="/news" element={<News />} />
           <Route path="/settings" element={<Settings />} />
+          <Route path="/login" element={<Login />} />
         </Routes>
       </div>
     </div>
