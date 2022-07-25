@@ -6,6 +6,7 @@ import { getUserProfile, ProfileAPIType } from '../../redux/Profile-reducer'
 import { AppStateType } from '../../redux/Redux-store'
 import { WithAuthRedirect } from '../../hoc/WithAuthRedirect'
 import { Profile } from './Profile'
+import { compose } from 'redux'
 
 const mapStateToProps = (state: AppStateType) => {
   return {
@@ -44,7 +45,7 @@ export class ProfileContainer extends React.Component<CommonPropsType> {
   componentDidMount() {
     let userId = this.props.router.params.userId
     // if (!userId) {
-    //   userId = ''
+    //  userId=24109
     // }
     this.props.getUserProfile(userId)
   }
@@ -60,9 +61,14 @@ export class ProfileContainer extends React.Component<CommonPropsType> {
     )
   }
 }
-const ProfileContainerURL = withRouter(ProfileContainer)
+// const ProfileContainerURL = withRouter(ProfileContainer)
 //HOC WithAuthRedirect оборачиваем нашу компоненту, контейнерной компонентой,для проверки залогинены
 //мы или нет и делает редирект
-export default WithAuthRedirect(
-  connect(mapStateToProps, { getUserProfile })(ProfileContainerURL)
-)
+// export default WithAuthRedirect(withRouter(connect(mapStateToProps, { getUserProfile })(ProfileContainer)))
+
+// применяем функцию compose  принимает нашу компоненту во вторые скобки и в первых мы перечисляем наши контейнеры
+export default compose<React.ComponentType>(
+  connect(mapStateToProps, { getUserProfile }),
+  withRouter,
+  WithAuthRedirect
+)(ProfileContainer)

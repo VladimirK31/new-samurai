@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Dispatch } from 'redux'
+import { compose, Dispatch } from 'redux'
 import {
   addMessageActionCreator,
   updateMessageTextActionCreator,
@@ -50,8 +50,13 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
 }
 //HOC WithAuthRedirect оборачиваем нашу компоненту, контейнерной компонентой,для проверки залогинены мы или нет
 // здесь через создание новой переменной AuthRedirectComponent
-let AuthRedirectComponent = WithAuthRedirect(Dialogs)
-export const DialogsContainer = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(AuthRedirectComponent)
+// let AuthRedirectComponent = WithAuthRedirect(Dialogs)
+// export const DialogsContainer = connect(
+//   mapStateToProps,
+//   mapDispatchToProps
+// )(AuthRedirectComponent)
+
+export const DialogsContainer = compose<React.ComponentType>(
+  connect(mapStateToProps, mapDispatchToProps),
+  WithAuthRedirect
+)(Dialogs)
