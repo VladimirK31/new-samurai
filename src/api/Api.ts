@@ -1,5 +1,17 @@
 import axios from 'axios'
+import { UserType } from '../redux/Users-reducer'
 
+type CommonResponseType<T> = {
+  data: T
+  fieldsErrors: []
+  messages: []
+  resultCode: 0 | 1
+}
+type GetUsersType = {
+  error: 0 | 1
+  items: UserType[]
+  totalCount: number
+}
 const instance = axios.create({
   withCredentials: true, //withCredentials настройка для серевера,обозначает что мы залогинены
   baseURL: `https://social-network.samuraijs.com/api/1.0/`,
@@ -11,7 +23,7 @@ const instance = axios.create({
 export const usersAPI = {
   getUsers(currentPage: number, pageSize: number) {
     return instance
-      .get(`users?page=${currentPage}&count=${pageSize}`)
+      .get<GetUsersType>(`users?page=${currentPage}&count=${pageSize}`)
       .then((response) => {
         return response.data
       })
@@ -24,8 +36,22 @@ export const usersAPI = {
     return instance.delete(`follow/${userId}`)
   },
   getUserProfile(userId: string) {
-    return instance.get(`profile/${userId}`)
+    return profileAPI.getUserProfile(userId)
+
     // после ? в запросе на сервер указываем page текущую страницу и count= количество юзеров на одной странице
+  },
+}
+
+export const profileAPI = {
+  getUserProfile(userId: string) {
+    return instance.get(`profile/${userId}`)
+  },
+  getStatus(userId: string) {
+    debugger
+    return instance.get<string>(`profile/status/` + userId)
+  },
+  updateStatus(status: string) {
+    return instance.put<CommonResponseType<{}>>(`profile/status/`, { status })
   },
 }
 export const authAPI = {

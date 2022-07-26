@@ -15,12 +15,12 @@ export const Description = (props: any) => {
         </div>
         <div>
           <span>
-            <b>About me: </b> {props.profile.aboutMe}
+            <b>About me: </b> {props.profile.aboutMe || '_______'}
           </span>
           <br />
           <span>
             <b>Status: </b>
-            {props.profile.status}
+            {props.profile.status || '_______'}
           </span>
         </div>
       </div>

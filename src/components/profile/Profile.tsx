@@ -9,7 +9,7 @@ export const Profile = (props: any) => {
     <div>
       <div>
         <Background />
-        <Description profile={props.profile} />
+        <Description profile={props.profile} status={props.profile.status} />
         <PostsContainer />
       </div>
     </div>

@@ -1,10 +1,11 @@
 import { Dispatch } from 'redux'
 import { v1 } from 'uuid'
-import { usersAPI } from '../api/Api'
+import { profileAPI, usersAPI } from '../api/Api'
 
 const ADD_POST = 'ADD-POST'
 const UPDATE_POST_TEXT = 'UPDATE-POST-TEXT'
 const SET_USER_PROFILE = 'SET_USER_PROFILE'
+const SET_STATUS = 'SET_STATUS'
 
 export type PostPropsType = {
   id: string
@@ -46,6 +47,7 @@ export type ActionPostsType =
   | ReturnType<typeof addPostActionCreator>
   | ReturnType<typeof updatePostTextActionCreator>
   | ReturnType<typeof setUsersProfile>
+  | ReturnType<typeof setStatus>
 
 let initialState: InitialStateType = {
   postData: [
@@ -92,6 +94,11 @@ const profileReducer = (
         ...state,
         newPostElement: action.newText,
       }
+    case SET_STATUS:
+      return {
+        ...state,
+        profile: { ...state.profile, status: action.status },
+      }
     case SET_USER_PROFILE:
       return { ...state, profile: action.profile }
     default:
@@ -112,10 +119,22 @@ export const setUsersProfile = (profile: ProfileAPIType) =>
     type: SET_USER_PROFILE,
     profile,
   } as const)
+export const setStatus = (status: string) =>
+  ({
+    type: SET_STATUS,
+    status,
+  } as const)
 
 export const getUserProfile = (userId: string) => (dispatch: Dispatch) => {
   usersAPI.getUserProfile(userId).then((response) => {
     dispatch(setUsersProfile(response.data))
+  })
+}
+export const getStatus = (userId: string) => (dispatch: Dispatch) => {
+  debugger
+  profileAPI.getStatus(userId).then((response) => {
+    debugger
+    dispatch(setStatus(response.data))
   })
 }
 

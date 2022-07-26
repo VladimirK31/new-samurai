@@ -2,7 +2,11 @@ import axios from 'axios'
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Navigate, useLocation, useNavigate, useParams } from 'react-router-dom'
-import { getUserProfile, ProfileAPIType } from '../../redux/Profile-reducer'
+import {
+  getStatus,
+  getUserProfile,
+  ProfileAPIType,
+} from '../../redux/Profile-reducer'
 import { AppStateType } from '../../redux/Redux-store'
 import { WithAuthRedirect } from '../../hoc/WithAuthRedirect'
 import { Profile } from './Profile'
@@ -11,6 +15,7 @@ import { compose } from 'redux'
 const mapStateToProps = (state: AppStateType) => {
   return {
     profile: state.profilePage.profile,
+    status: state.profilePage.profile.status,
   }
 }
 type PathParamsType = {
@@ -20,6 +25,7 @@ type CommonPropsType = Component<PathParamsType> & PropsType
 export type MapStateToPropsType = {
   profile: ProfileAPIType
   isAuth: boolean
+  status: string
 }
 type RouterType = {
   router: {
@@ -30,6 +36,7 @@ type RouterType = {
 }
 export type MapDispatchToProps = {
   getUserProfile: (userId: string) => void
+  getStatus: (status: string) => void
 }
 export type PropsType = MapStateToPropsType & MapDispatchToProps & RouterType
 
@@ -48,6 +55,7 @@ export class ProfileContainer extends React.Component<CommonPropsType> {
     //  userId=24109
     // }
     this.props.getUserProfile(userId)
+    this.props.getStatus(userId)
   }
   render() {
     //(!this.props.isAuth)return то же самое что и this.props.isAuth == false
@@ -55,7 +63,11 @@ export class ProfileContainer extends React.Component<CommonPropsType> {
     return (
       <div>
         <div>
-          <Profile {...this.props} profile={this.props.profile} />
+          <Profile
+            {...this.props}
+            profile={this.props.profile}
+            status={this.props.profile.status}
+          />
         </div>
       </div>
     )
@@ -68,7 +80,7 @@ export class ProfileContainer extends React.Component<CommonPropsType> {
 
 // применяем функцию compose  принимает нашу компоненту во вторые скобки и в первых мы перечисляем наши контейнеры
 export default compose<React.ComponentType>(
-  connect(mapStateToProps, { getUserProfile }),
+  connect(mapStateToProps, { getUserProfile, getStatus }),
   withRouter,
   WithAuthRedirect
 )(ProfileContainer)
