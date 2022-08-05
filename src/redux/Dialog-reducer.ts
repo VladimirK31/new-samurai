@@ -1,6 +1,5 @@
 import { v1 } from 'uuid'
 
-const UPDATE_MESSAGE_TEXT = 'UPDATE-MESSAGE-TEXT'
 const ADD_MESSAGE = 'ADD-MESSAGE'
 
 export type DialogPropsType = {
@@ -18,9 +17,7 @@ export type InitialStateType = {
   newMessageElement: string
 }
 
-export type DialogActionType =
-  | ReturnType<typeof addMessageActionCreator>
-  | ReturnType<typeof updateMessageTextActionCreator>
+export type DialogActionType = ReturnType<typeof addMessageActionCreator>
 
 let initialState: InitialStateType = {
   dialogData: [
@@ -64,29 +61,21 @@ const dialogReducer = (
     case ADD_MESSAGE:
       const newMessage: MessagePropsType = {
         id: v1(),
-        message: state.newMessageElement,
+        message: action.addMessage,
       }
       return {
         ...state,
-        newMessageElement: '',
         messageData: [...state.messageData, newMessage],
       }
-    case UPDATE_MESSAGE_TEXT:
-      return { ...state, newMessageElement: action.newMessageText }
-
     default:
       return state
   }
 }
 
-export const addMessageActionCreator = () =>
+export const addMessageActionCreator = (addMessage: string) =>
   ({
     type: ADD_MESSAGE,
-  } as const)
-export const updateMessageTextActionCreator = (newMessage: string) =>
-  ({
-    type: UPDATE_MESSAGE_TEXT,
-    newMessageText: newMessage,
+    addMessage,
   } as const)
 
 export default dialogReducer

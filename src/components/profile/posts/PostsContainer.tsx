@@ -1,10 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Dispatch } from 'redux'
-import {
-  addPostActionCreator,
-  updatePostTextActionCreator,
-} from '../../../redux/Profile-reducer'
+import { addPostActionCreator } from '../../../redux/Profile-reducer'
 import { AppStateType } from '../../../redux/Redux-store'
 import { Posts } from './Posts'
 
@@ -39,11 +36,8 @@ const mapStateToProps = (state: AppStateType) => {
 }
 const mapDispatchToProps = (dispatch: Dispatch) => {
   return {
-    addPost: () => {
-      dispatch(addPostActionCreator())
-    },
-    onPostChange: (text: string) => {
-      dispatch(updatePostTextActionCreator(text))
+    addPost: (addNewPost: string) => {
+      dispatch(addPostActionCreator(addNewPost))
     },
   }
 }

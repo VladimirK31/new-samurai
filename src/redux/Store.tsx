@@ -1,12 +1,6 @@
 import { v1 } from 'uuid'
-import dialogReducer, {
-  addMessageActionCreator,
-  updateMessageTextActionCreator,
-} from './Dialog-reducer'
-import profileReducer, {
-  addPostActionCreator,
-  updatePostTextActionCreator,
-} from './Profile-reducer'
+import dialogReducer, { addMessageActionCreator } from './Dialog-reducer'
+import profileReducer, { addPostActionCreator } from './Profile-reducer'
 import sidebarReducer from './Sidebar-reducer '
 
 type DialogPropsType = {
@@ -59,9 +53,7 @@ export type StorePropsType = {
 
 export type ActionType =
   | ReturnType<typeof addPostActionCreator>
-  | ReturnType<typeof updatePostTextActionCreator>
   | ReturnType<typeof addMessageActionCreator>
-  | ReturnType<typeof updateMessageTextActionCreator>
 
 export const store: StorePropsType = {
   _state: {

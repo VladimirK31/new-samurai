@@ -3,7 +3,6 @@ import { v1 } from 'uuid'
 import { profileAPI, usersAPI } from '../api/Api'
 
 const ADD_POST = 'ADD-POST'
-const UPDATE_POST_TEXT = 'UPDATE-POST-TEXT'
 const SET_USER_PROFILE = 'SET_USER_PROFILE'
 const SET_STATUS = 'SET_STATUS'
 
@@ -45,7 +44,6 @@ export type InitialStateType = {
 
 export type ActionPostsType =
   | ReturnType<typeof addPostActionCreator>
-  | ReturnType<typeof updatePostTextActionCreator>
   | ReturnType<typeof setUsersProfile>
   | ReturnType<typeof setStatus>
 
@@ -80,20 +78,15 @@ const profileReducer = (
     case ADD_POST:
       const newPost: PostPropsType = {
         id: v1(),
-        message: state.newPostElement,
+        message: action.addNewPost,
         likecount: 0,
       }
       return {
         ...state,
         newPostElement: '',
-        postData: [...state.postData, newPost],
+        postData: [newPost, ...state.postData],
       }
 
-    case UPDATE_POST_TEXT:
-      return {
-        ...state,
-        newPostElement: action.newText,
-      }
     case SET_STATUS:
       return {
         ...state,
@@ -105,15 +98,12 @@ const profileReducer = (
       return state
   }
 }
-export const addPostActionCreator = () =>
+export const addPostActionCreator = (addNewPost: string) =>
   ({
     type: ADD_POST,
+    addNewPost,
   } as const)
-export const updatePostTextActionCreator = (text: string) =>
-  ({
-    type: UPDATE_POST_TEXT,
-    newText: text,
-  } as const)
+
 export const setUsersProfile = (profile: ProfileAPIType) =>
   ({
     type: SET_USER_PROFILE,
