@@ -1,6 +1,7 @@
 import React from 'react'
 import { Field, InjectedFormProps, reduxForm } from 'redux-form'
 import { PostPropsType } from '../../../redux/Profile-reducer'
+import { requiredField } from '../../../utilits/validators/Validators'
 import { Post } from './post/Post'
 import s from './Posts.module.css'
 type PostsPropsType = {
@@ -34,6 +35,7 @@ const AddNewPostForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
         name="addNewPost"
         component="textarea"
         placeholder="Enter your post"
+        validate={[requiredField]}
       />
       <div>
         <button className={s.button}>add post</button>
